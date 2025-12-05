@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Adjust this to your default branch (main, master, etc.)
+      - gh-pages 
   workflow_dispatch:
   
 
