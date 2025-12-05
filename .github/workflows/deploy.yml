@@ -5,6 +5,9 @@ on:
     branches:
       - master # Adjust this to your default branch (main, master, etc.)
   workflow_dispatch:
+  
+  permissions:
+  contents: write
 
 jobs:
   build_and_deploy:
