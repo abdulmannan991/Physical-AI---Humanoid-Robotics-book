@@ -17,10 +17,10 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://YOUR_GITHUB_USERNAME.github.io', // TODO: Update with your GitHub username for GitHub Pages deployment
+  url: 'https://abdulmannan991.github.io', // TODO: Update with your GitHub username for GitHub Pages deployment
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ai-book/',
+  baseUrl: '/Physical-AI-Humanoid-Robotics-Textbook/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
