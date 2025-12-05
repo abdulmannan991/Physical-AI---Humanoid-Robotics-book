@@ -3,20 +3,6 @@
   "position": 6,
   "link": {
     "type": "doc",
-    "id": "humanoid-control-overview"
-  },
-  "items": [
-    {
-      "type": "doc",
-      "id": "humanoid-control-overview"
-    },
-    {
-      "type": "doc",
-      "id": "03-gait-generation"
-    },
-    {
-      "type": "doc",
-      "id": "04-reinforcement-learning-control"
-    }
-  ]
+    "id": "index"
+  }
 }
