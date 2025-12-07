@@ -7,7 +7,6 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Mermaid from '@theme/Mermaid';
 
 # Module 1: Physical AI Foundations
 
@@ -19,12 +18,12 @@ Physical AI refers to artificial intelligence systems designed to perceive, reas
 
 The core of Physical AI lies in the **Perception-Action Loop**:
 
-<Mermaid chart={`
-graph TD;
-    A[Perception: Sensors, Vision, Haptics] --> B{AI Model: Reasoning, Planning};
-    B --> C[Action: Actuators, Motion, Manipulation];
-    C --> A;
-`} />
+```mermaid
+graph TD
+    A[Perception: Sensors, Vision, Haptics] --> B{AI Model: Reasoning, Planning}
+    B --> C[Action: Actuators, Motion, Manipulation]
+    C --> A
+```
 
 This continuous cycle allows intelligent systems to adapt to dynamic real-world conditions, making decisions based on sensory input and executing physical responses.
 

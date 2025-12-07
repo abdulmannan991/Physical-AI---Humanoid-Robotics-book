@@ -5,8 +5,6 @@ sidebar_label: "6.1 - FK & IK"
 sidebar_position: 2
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 # Module 6.1: Forward and Inverse Kinematics: Controlling Robot Motion
 
 To precisely control a robotic arm or a humanoid limb, we need to understand the relationship between the robot's joint angles and the position and orientation of its end-effector (e.g., a gripper or hand). This relationship is defined by **kinematics**, which can be broadly categorized into Forward Kinematics (FK) and Inverse Kinematics (IK).

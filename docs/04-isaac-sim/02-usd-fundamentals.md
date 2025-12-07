@@ -5,8 +5,6 @@ sidebar_label: "4.2 - USD Fundamentals"
 sidebar_position: 3
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 # Module 4.2: USD Fundamentals: Building Universal Scenes
 
 Universal Scene Description (USD) is a powerful, open-source 3D scene description technology developed by Pixar Animation Studios. It's the core technology behind NVIDIA Omniverse and plays a crucial role in creating complex, collaborative, and scalable virtual worlds for robotics. This chapter will introduce you to the fundamentals of USD.

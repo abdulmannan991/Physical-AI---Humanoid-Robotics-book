@@ -15,39 +15,39 @@ interface FeatureCard {
 
 const features: FeatureCard[] = [
   {
+    title: 'Physical AI Foundations',
+    icon: '🎓',
+    description: 'Start your journey into Physical AI with foundational concepts and the complete technology stack.',
+    link: '/intro',
+  },
+  {
     title: 'ROS 2 Fundamentals',
     icon: '🤖',
     description: 'Master the Robot Operating System 2, the industry standard for robotics development and communication.',
-    link: '/02-ros2',
+    link: '/intro',
   },
   {
     title: 'Digital Twin Simulation',
     icon: '🌐',
     description: 'Create virtual replicas of physical robots using Gazebo, Unity, and advanced simulation environments.',
-    link: '/03-digital-twin',
+    link: '/intro',
   },
   {
     title: 'NVIDIA Isaac Sim',
     icon: '⚡',
     description: 'Harness GPU-accelerated simulation and photorealistic rendering for advanced robotics training.',
-    link: '/04-isaac-sim',
+    link: '/intro',
   },
   {
     title: 'Vision-Language-Action',
     icon: '👁️',
     description: 'Integrate AI vision models with language understanding to enable intelligent robotic decision-making.',
-    link: '/05-vision-language-action',
+    link: '/intro',
   },
   {
     title: 'Humanoid Control',
     icon: '🦾',
     description: 'Learn inverse kinematics, gait generation, and reinforcement learning for bipedal robot control.',
-    link: '/06-humanoid-control',
-  },
-  {
-    title: 'Complete Projects',
-    icon: '🚀',
-    description: 'Build end-to-end robotics applications combining all modules into production-ready systems.',
     link: '/intro',
   },
 ];

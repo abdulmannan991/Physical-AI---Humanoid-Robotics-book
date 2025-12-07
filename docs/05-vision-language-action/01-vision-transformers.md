@@ -5,8 +5,6 @@ sidebar_label: "5.1 - Vision Transformers"
 sidebar_position: 2
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 # Module 5.1: Vision Transformers: A New Paradigm for Visual Perception
 
 For years, Convolutional Neural Networks (CNNs) were the undisputed champions of computer vision. However, with the groundbreaking success of Transformers in Natural Language Processing (NLP), researchers began exploring their application to visual tasks. This led to the development of **Vision Transformers (ViT)**, which have revolutionized how we approach visual perception in AI and robotics.
