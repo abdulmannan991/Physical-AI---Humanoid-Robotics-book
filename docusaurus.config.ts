@@ -18,11 +18,10 @@ const config: Config = {
 //    v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'https://abdulmannan991.github.io', // TODO: Update with your GitHub username for GitHub Pages deployment
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: isProd ? '/Physical-AI---Humanoid-Robotics-book/' : '/Physical-AI-Humanoid-Robotics-Textbook/',
+  // Set the product// ...
+  url: 'https://your-app-name.vercel.app', // (Optional) Your Vercel URL
+  baseUrl: '/', 
+// ...
   // baseUrl: '/Physical-AI---Humanoid-Robotics-book/',
 
   // GitHub pages deployment config.
