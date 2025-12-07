@@ -1,23 +1,492 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* ==========================================
+   HERO SECTION
+   ========================================== */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+.hero {
   position: relative;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  padding: 4rem 2rem;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Animated grid background */
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--ifm-color-primary-lightest) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ifm-color-primary-lightest) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+/* Gradient overlay */
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 20%,
+    var(--ifm-color-primary-lightest) 0%,
+    transparent 60%
+  );
+  opacity: 0.3;
+}
+
+[data-theme='dark'] .heroGradient {
+  background: radial-gradient(
+    ellipse at 50% 20%,
+    var(--ifm-color-primary-darkest) 0%,
+    transparent 60%
+  );
+  opacity: 0.4;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  text-align: center;
+}
+
+.heroText {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(var(--ifm-color-primary-rgb), 0.1);
+  border: 1px solid var(--ifm-color-primary-light);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  background: var(--ifm-color-primary);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+[data-theme='dark'] .badge {
+  background: rgba(var(--ifm-color-primary-rgb), 0.2);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+/* Hero Typography */
+.heroTitle {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+[data-theme='dark'] .heroTitle {
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary-light) 0%,
+    var(--ifm-color-primary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.heroDescription {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--ifm-text-color-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* Hero Buttons */
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.btnPrimary {
+  position: relative;
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-dark));
+  border: none;
+  color: white !important;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(var(--ifm-color-primary-rgb), 0.3);
+}
+
+.btnPrimary:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark), var(--ifm-color-primary-darkest));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(var(--ifm-color-primary-rgb), 0.5);
+  color: white !important;
+}
+
+.btnPrimary .btnArrow {
+  position: relative;
+  z-index: 1;
+  margin-left: 0.5rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.btnPrimary:hover .btnArrow {
+  transform: translateX(4px);
+}
+
+.btnSecondary {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary) !important;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnSecondary:hover {
+  background: var(--ifm-color-primary);
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(var(--ifm-color-primary-rgb), 0.3);
+}
+
+.githubIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================
+   FEATURES SECTION
+   ========================================== */
+
+.features {
+  padding: 6rem 2rem;
+  background: var(--ifm-background-color);
+  position: relative;
+}
+
+.featuresContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.featuresHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.featuresTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+.featuresSubtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--ifm-text-color-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   GLASSMORPHISM CARDS
+   ========================================== */
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.card {
+  position: relative;
+  display: block;
+  padding: 2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Glassmorphism effect */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] .card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Animated border glow on hover */
+.cardGlow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary),
+    var(--ifm-color-primary-light),
+    var(--ifm-color-primary-dark)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.card:hover .cardGlow {
+  opacity: 0.4;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--ifm-color-primary);
+  box-shadow:
+    0 20px 60px rgba(var(--ifm-color-primary-rgb), 0.25),
+    0 0 0 1px var(--ifm-color-primary);
+  background: rgba(var(--ifm-color-primary-rgb), 0.03);
+}
+
+[data-theme='light'] .card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 20px 60px rgba(var(--ifm-color-primary-rgb), 0.2),
+    0 0 0 1px var(--ifm-color-primary);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+}
+
+.cardIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  filter: drop-shadow(0 4px 12px rgba(var(--ifm-color-primary-rgb), 0.3));
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .cardIcon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardTitle {
+  color: var(--ifm-color-primary);
+}
+
+.cardDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-text-color-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.cardArrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  transition: gap 0.3s ease;
+}
+
+.card:hover .cardArrow {
+  gap: 0.75rem;
+}
+
+.cardArrow svg {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .cardArrow svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 996px) {
+  .hero {
+    min-height: 70vh;
+    padding: 3rem 1.5rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .features {
+    padding: 4rem 1.5rem;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.125rem;
+  }
+
+  .heroDescription {
+    font-size: 0.9375rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .cardIcon {
+    font-size: 2.5rem;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.card:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+}
+
+.btnPrimary:focus-visible,
+.btnSecondary:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .heroText,
+  .badge,
+  .heroTitle,
+  .heroSubtitle,
+  .heroDescription,
+  .heroButtons {
+    animation: none;
+  }
+
+  .card,
+  .cardIcon,
+  .btnPrimary .btnArrow,
+  .cardArrow svg {
+    transition: none;
+  }
+
+  .heroGrid {
+    animation: none;
+  }
 }

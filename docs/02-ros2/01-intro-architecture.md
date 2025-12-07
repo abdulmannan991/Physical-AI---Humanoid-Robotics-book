@@ -5,8 +5,6 @@ sidebar_label: "2.1 - Intro & Architecture"
 sidebar_position: 1
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 # Module 2.1: Introduction and Architecture
 
 This chapter introduces the fundamental architecture of ROS 2, comparing it to its predecessor, ROS 1, and detailing the core components that form the ROS Graph.
@@ -48,12 +46,12 @@ A **Message** is a data structure used for communication on topics. Messages are
 
 The most common communication pattern in ROS 2 is the publisher-subscriber model using topics:
 
-<Mermaid chart={`
-graph LR;
-    Publisher[Node A: Sensor Publisher] --> Topic(Sensor Data Topic);
-    Topic --> Subscriber1[Node B: Data Logger];
-    Topic --> Subscriber2[Node C: Control Algorithm];
-`} />
+```mermaid
+graph LR
+    Publisher[Node A: Sensor Publisher] --> Topic(Sensor Data Topic)
+    Topic --> Subscriber1[Node B: Data Logger]
+    Topic --> Subscriber2[Node C: Control Algorithm]
+```
 
 In this diagram:
 

@@ -1,0 +1,191 @@
+/**
+ * Global styles and typography adjustments
+ * Applied to enhance the textbook aesthetic and readability
+ */
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--ifm-heading-font-weight);
+  line-height: var(--ifm-heading-line-height);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: var(--ifm-h1-font-size);
+}
+
+h2 {
+  font-size: var(--ifm-h2-font-size);
+}
+
+h3 {
+  font-size: var(--ifm-h3-font-size);
+}
+
+h4 {
+  font-size: var(--ifm-h4-font-size);
+}
+
+h5 {
+  font-size: var(--ifm-h5-font-size);
+}
+
+h6 {
+  font-size: var(--ifm-h6-font-size);
+}
+
+/* Paragraph spacing for better readability */
+p {
+  margin-bottom: 1rem;
+  line-height: var(--ifm-line-height-base);
+}
+
+/* List improvements */
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code block styling */
+code {
+  background-color: var(--ifm-code-background);
+  padding: var(--ifm-code-padding-vertical) var(--ifm-code-padding-horizontal);
+  border-radius: var(--ifm-global-radius);
+  font-size: var(--ifm-code-font-size);
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Blockquote styling for textbook notes */
+blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--ifm-text-color-secondary);
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-300);
+  text-align: left;
+}
+
+th {
+  background-color: var(--ifm-color-emphasis-100);
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+/* Image improvements */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ifm-global-radius);
+}
+
+/* Horizontal rule styling */
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: var(--ifm-global-border-width) solid var(--ifm-color-emphasis-300);
+}
+
+/* Link styling */
+a {
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Card-like sections */
+.card {
+  background-color: var(--ifm-background-surface-color);
+  border-radius: var(--ifm-global-radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+/* Alert boxes */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--ifm-global-radius);
+  border-left: 4px solid;
+}
+
+.alert--info {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-left-color: var(--ifm-color-primary);
+}
+
+.alert--warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  border-left-color: #ffc107;
+}
+
+.alert--danger {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left-color: #dc3545;
+}
+
+.alert--success {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-left-color: #28a745;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  :root {
+    --ifm-h1-font-size: 2rem;
+    --ifm-h2-font-size: 1.75rem;
+    --ifm-h3-font-size: 1.375rem;
+    --ifm-h4-font-size: 1.125rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000;
+  }
+
+  .navbar,
+  .footer {
+    display: none;
+  }
+}

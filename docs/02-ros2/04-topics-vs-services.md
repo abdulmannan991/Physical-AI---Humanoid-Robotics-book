@@ -13,6 +13,20 @@ ROS 2 provides several communication mechanisms, each suited for different scena
 
 As discussed in Module 2.1, Topics implement a publish/subscribe model. Publishers send messages without knowing or caring if anyone is listening, and subscribers receive messages without requesting them. This is a one-to-many or many-to-many asynchronous communication pattern.
 
+```mermaid
+sequenceDiagram
+    participant Publisher
+    participant Topic
+    participant Subscriber1
+    participant Subscriber2
+
+    loop Continuous Publishing
+        Publisher->>Topic: Publish Message
+        Topic->>Subscriber1: Deliver Message
+        Topic->>Subscriber2: Deliver Message
+    end
+```
+
 :::info Use Cases for Topics
 *   **Sensor Data:** Continuous streams from cameras, LiDARs, IMUs (Inertial Measurement Units), microphones.
 *   **Robot State:** Odometry, joint states, battery level updates.
@@ -23,6 +37,19 @@ As discussed in Module 2.1, Topics implement a publish/subscribe model. Publishe
 ## Services: Synchronous Request/Response
 
 Services provide a synchronous request/response communication model. A client node sends a request to a service server node, and the service server processes the request and sends back a response. The client typically blocks (waits) until it receives a response or a timeout occurs.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Service
+
+    Client->>Service: Send Request
+    activate Service
+    Note right of Service: Processing...
+    Service-->>Client: Send Response
+    deactivate Service
+    Note left of Client: Continue execution
+```
 
 :::info Use Cases for Services
 *   **Discrete Actions:** Commanding a robot to perform a specific, one-time action (e.g., "move arm to position X," "take a picture").

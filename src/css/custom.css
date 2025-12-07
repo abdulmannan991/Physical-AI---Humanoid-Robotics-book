@@ -4,9 +4,14 @@
  * work well for content-centric websites.
  */
 
+/* Import global styles */
+@import './global.css';
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #007bff; /* A blue that provides good contrast */
+  /* Primary Colors - Blue theme for textbook aesthetics */
+  --ifm-color-primary: #007bff;
+  --ifm-color-primary-rgb: 0, 123, 255;
   --ifm-color-primary-dark: #0056b3;
   --ifm-color-primary-darker: #004da3;
   --ifm-color-primary-darkest: #003d82;
@@ -14,16 +19,52 @@
   --ifm-color-primary-lighter: #66b2ff;
   --ifm-color-primary-lightest: #99ccff;
 
-  --ifm-font-family-base: Georgia, serif; /* Textbook aesthetic */
+  /* Typography */
+  --ifm-font-family-base: Georgia, serif;
   --ifm-font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-weight-semibold: 500;
+  --ifm-font-weight-bold: 700;
 
-  --ifm-heading-color: #343a40; /* Darker heading for contrast */
-  --ifm-text-color: #212529; /* Darker text for readability */
+  /* Font Sizes */
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-h2-font-size: 2rem;
+  --ifm-h3-font-size: 1.5rem;
+  --ifm-h4-font-size: 1.25rem;
+  --ifm-h5-font-size: 1.125rem;
+  --ifm-h6-font-size: 1rem;
 
-  --ifm-background-color: #f8f9fa; /* Light background */
+  /* Text Colors */
+  --ifm-heading-color: #343a40;
+  --ifm-text-color: #212529;
+  --ifm-text-color-secondary: #6c757d;
 
+  /* Background Colors */
+  --ifm-background-color: #f8f9fa;
+  --ifm-background-surface-color: #ffffff;
+
+  /* Spacing */
+  --ifm-spacing-horizontal: 1rem;
+  --ifm-spacing-vertical: 1rem;
+  --ifm-global-spacing: 1rem;
+
+  /* Border & Shadow */
+  --ifm-global-border-width: 1px;
+  --ifm-global-radius: 0.375rem;
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Code blocks */
   --ifm-code-font-size: 95%;
+  --ifm-code-background: #f6f8fa;
+  --ifm-code-padding-horizontal: 0.25rem;
+  --ifm-code-padding-vertical: 0.125rem;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Line Heights */
+  --ifm-line-height-base: 1.65;
+  --ifm-heading-line-height: 1.25;
 }
 
 body {
@@ -43,7 +84,8 @@ a:hover {
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #66b2ff; /* Lighter blue for dark mode */
+  /* Primary Colors - Adjusted for dark mode */
+  --ifm-color-primary: #66b2ff;
   --ifm-color-primary-dark: #3399ff;
   --ifm-color-primary-darker: #007bff;
   --ifm-color-primary-darkest: #0056b3;
@@ -51,9 +93,21 @@ a:hover {
   --ifm-color-primary-lighter: #cce0ff;
   --ifm-color-primary-lightest: #e6f0ff;
 
-  --ifm-background-color: #212529; /* Dark background */
-  --ifm-text-color: #f8f9fa; /* Light text for readability */
-  --ifm-heading-color: #e9ecef; /* Lighter heading for dark mode */
+  /* Text Colors for dark mode */
+  --ifm-text-color: #f8f9fa;
+  --ifm-text-color-secondary: #adb5bd;
+  --ifm-heading-color: #e9ecef;
 
+  /* Background Colors for dark mode */
+  --ifm-background-color: #212529;
+  --ifm-background-surface-color: #2d3338;
+
+  /* Code blocks for dark mode */
+  --ifm-code-background: #2d3338;
   --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+  /* Shadows for dark mode */
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --ifm-global-shadow-tl: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }

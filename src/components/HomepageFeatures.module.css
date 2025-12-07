@@ -1,11 +1,17 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: calc(var(--ifm-spacing-vertical) * 2) 0;
   width: 100%;
+  background-color: var(--ifm-background-color);
 }
 
 .featureSvg {
   height: 200px;
   width: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.featureSvg:hover {
+  transform: scale(1.05);
 }

@@ -1,3 +1,5 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import {themes as prismThemes} from 'prism-react-renderer';
@@ -13,14 +15,15 @@ const config: Config = {
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+//    v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
   // Set the production url of your site here
   url: 'https://abdulmannan991.github.io', // TODO: Update with your GitHub username for GitHub Pages deployment
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Physical-AI---Humanoid-Robotics-book/',
+  baseUrl: isProd ? '/Physical-AI---Humanoid-Robotics-book/' : '/Physical-AI-Humanoid-Robotics-Textbook/',
+  // baseUrl: '/Physical-AI---Humanoid-Robotics-book/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -56,6 +59,12 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   themeConfig: {
     // Replace with your project's social card
