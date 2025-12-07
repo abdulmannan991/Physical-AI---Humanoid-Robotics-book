@@ -29,12 +29,12 @@ One of the most powerful concepts in USD is **layering**. Instead of flattening 
 
 Consider this simple example of how a robot model might be composed:
 
-<Mermaid chart={`
-graph TD;
-    BaseModel[Base Robot Model (USD File)] --> Materials[Materials Layer (USD File)];
-    Materials --> Animation[Animation Layer (USD File)];
-    Animation --> SimulationConfig[Simulation Config Layer (USD File)];
-`} />
+```mermaid
+graph TD
+    BaseModel[Base Robot Model USD File] --> Materials[Materials Layer USD File]
+    Materials --> Animation[Animation Layer USD File]
+    Animation --> SimulationConfig[Simulation Config Layer USD File]
+```
 
 In this layering structure:
 

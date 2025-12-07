@@ -47,12 +47,12 @@ The IK problem can be solved using various methods:
 
 Here's a conceptual diagram illustrating the IK process:
 
-<Mermaid chart={`
-graph TD;
-    A[Desired End-Effector Pose (X, Y, Z, Roll, Pitch, Yaw)] --> B{IK Solver};
-    B --> C[Required Joint Angles (θ1, θ2, ..., θn)];
-    C --> D[Robot Joints];
-`} />
+```mermaid
+graph TD
+    A[Desired End-Effector Pose X Y Z Roll Pitch Yaw] --> B{IK Solver}
+    B --> C[Required Joint Angles θ1 θ2 ... θn]
+    C --> D[Robot Joints]
+```
 
 In this diagram:
 

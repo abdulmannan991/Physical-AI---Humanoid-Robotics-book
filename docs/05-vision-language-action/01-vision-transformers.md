@@ -34,14 +34,14 @@ Unlike CNNs, ViTs do not use convolutions. Instead, they treat an image as a seq
 The core idea behind ViT is to **tokenize** an image by splitting it into fixed-size patches, linearly embedding each patch, and then adding positional embeddings to retain spatial information. These patch embeddings are then treated as a sequence, allowing the Transformer's self-attention mechanism to learn global dependencies across the entire image.
 :::
 
-<Mermaid chart={`
-graph LR;
-    A[Input Image] --> B[Split into Patches (e.g., 16x16 pixels)];
-    B --> C[Linear Embedding (Flatten + Dense Layer)];
-    C --> D[Add Positional Embeddings];
-    D --> E[Transformer Encoder];
-    E --> F[Classification Head];
-`} />
+```mermaid
+graph LR
+    A[Input Image] --> B[Split into Patches e.g. 16x16 pixels]
+    B --> C[Linear Embedding Flatten + Dense Layer]
+    C --> D[Add Positional Embeddings]
+    D --> E[Transformer Encoder]
+    E --> F[Classification Head]
+```
 
 **Pros:**
 
