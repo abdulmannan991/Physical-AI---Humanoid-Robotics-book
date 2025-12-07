@@ -38,7 +38,7 @@ This course offers three distinct hardware implementation paths:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/ai-humanoid-book/ai-book.git
+git clone https://github.com/abdulmannan991/Physical-AI---Humanoid-Robotics-book.git
 cd ai-book
 ```
 
