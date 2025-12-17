@@ -44,6 +44,15 @@ export const useChatbot = (): UseChatbotReturn => {
             timestamp: new Date(msg.timestamp),
           }))
         );
+      } else {
+        // No stored session - add welcome greeting
+        const greetingMessage: Message = {
+          id: 'greeting-initial',
+          role: 'assistant',
+          content: '🤖 I am Abdul Mannan\'s assistant. I can help you with the Physical AI Humanoid Robotics book.',
+          timestamp: new Date(),
+        };
+        setMessages([greetingMessage]);
       }
     } catch (err) {
       console.error('Failed to load session from storage:', err);
