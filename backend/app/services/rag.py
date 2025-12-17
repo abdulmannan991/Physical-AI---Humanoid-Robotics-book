@@ -7,6 +7,7 @@ Constitution: backend/.specify/memory/constitution.md (Section 4.1)
 """
 
 import logging
+import re
 import time
 from typing import List, Dict, Optional
 from uuid import UUID
@@ -305,6 +306,9 @@ class RAGService:
         for chunk in chunks[:5]:  # Top 5 chunks
             url = chunk.get("url", "")
 
+            # Clean the URL to fix 404 issues
+            url = self._clean_citation_url(url)
+
             # Skip if we've already added this URL
             if url in seen_urls:
                 continue
@@ -321,6 +325,64 @@ class RAGService:
 
         return citations
 
+    def _clean_citation_url(self, url: str) -> str:
+        """
+        Clean citation URL to match Docusaurus routing.
 
+        Args:
+            url: Raw URL from chunk metadata (e.g., 'docs/02-ros2/2.1-intro.md')
+
+        Returns:
+            Cleaned URL that works with Docusaurus (e.g., '/ros2/intro')
+
+        Transformations:
+        1. Remove 'docs/' prefix
+        2. Remove '.md' extension
+        3. Remove '/index' suffix
+        4. Remove numeric prefixes from path segments (e.g., '01-', '2.1-')
+        5. Ensure starts with '/'
+
+        Examples:
+        - 'docs/02-ros2/2.1-intro.md' -> '/ros2/intro'
+        - 'docs/01-intro/index.md' -> '/intro'
+        - '03-perception/3.2-cameras.md' -> '/perception/cameras'
+        """
+        if not url:
+            return ""
+
+        # Step 1: Remove 'docs/' prefix (case-insensitive)
+        if url.startswith("docs/"):
+            url = url[5:]  # Remove "docs/"
+        elif url.startswith("/docs/"):
+            url = url[6:]  # Remove "/docs/"
+
+        # Step 2: Remove .md extension
+        if url.endswith(".md"):
+            url = url[:-3]
+
+        # Step 3: Remove /index suffix (critical fix for 404 errors)
+        if url.endswith("/index"):
+            url = url[:-6]
+
+        # Step 4: Remove numeric prefixes from path segments
+        # Pattern: digit(s) followed by dot or hyphen (e.g., '01-', '2.1-', '10-')
+        # Split by /, clean each segment, rejoin
+        path_segments = url.split("/")
+        cleaned_segments = []
+
+        for segment in path_segments:
+            if segment:  # Skip empty segments
+                # Remove numeric prefix: '01-intro' -> 'intro', '2.1-cameras' -> 'cameras'
+                cleaned = re.sub(r"^(\d+[.-])+", "", segment)
+                if cleaned:  # Only add if segment is not empty after cleaning
+                    cleaned_segments.append(cleaned)
+
+        url = "/".join(cleaned_segments)
+
+        # Step 5: Ensure starts with /
+        if not url.startswith("/"):
+            url = "/" + url
+
+        return url
 # Global RAG service instance
 rag_service = RAGService()
