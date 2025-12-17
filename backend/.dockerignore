@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.cover
+.tox/
+.venv/
+venv/
+ENV/
+env/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# Docker
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Data & Logs
+data/qdrant/
+data/raw/
+*.log
+logs/
+
+# Testing
+tests/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Development
+scripts/
+.pre-commit-config.yaml
+pyproject.toml
+poetry.lock
+requirements-dev.txt
