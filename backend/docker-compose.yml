@@ -1,0 +1,63 @@
+# Docker Compose for RAG Chatbot Backend (Local Development)
+#
+# This file sets up:
+# - Qdrant vector database (local development)
+# - FastAPI backend (optional - can also run with uvicorn directly)
+#
+# Constitution: backend/.specify/memory/constitution.md (Section 10)
+
+version: '3.8'
+
+services:
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:v1.7.4
+    container_name: rag-chatbot-qdrant
+    ports:
+      - "6333:6333"  # REST API
+      - "6334:6334"  # gRPC API
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-chatbot-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - ENVIRONMENT=development
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app  # Mount code for hot reload
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+    depends_on:
+      - qdrant
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    networks:
+      - default
+
+# Networks
+networks:
+  default:
+    name: rag-chatbot-network
+
+# Volumes
+volumes:
+  qdrant_storage:
+    driver: local

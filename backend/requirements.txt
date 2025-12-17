@@ -1,0 +1,41 @@
+# Generated from pyproject.toml for pip compatibility
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Vector database
+qdrant-client==1.7.3
+
+# Cohere (LLM and Embeddings)
+cohere==4.44.0
+
+# Database (Neon PostgreSQL)
+asyncpg==0.29.0
+psycopg[binary,pool]==3.1.18
+sqlalchemy[asyncio]==2.0.25
+
+# HTTP client
+httpx==0.26.0
+
+# File upload support
+python-multipart==0.0.6
+
+# Rate limiting
+slowapi==0.1.9
+
+# Markdown frontmatter parsing
+python-frontmatter==1.0.1
+
+# Development dependencies
+pytest==7.4.4
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+black==24.1.1
+ruff==0.1.14
+mypy==1.8.0
+isort==5.13.2
+pre-commit==3.6.0
