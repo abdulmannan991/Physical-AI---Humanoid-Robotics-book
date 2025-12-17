@@ -376,6 +376,11 @@
   line-height: 1.6;
   color: var(--ifm-text-color-secondary);
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardDescription {
+  color: white;
 }
 
 .cardArrow {

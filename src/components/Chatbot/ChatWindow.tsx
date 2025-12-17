@@ -124,11 +124,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             >
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
-            <p>Ask me anything about the course!</p>
-            <p className={styles.emptyStateSubtext}>
-              I can help you understand concepts, find specific information, and
-              explain course content.
-            </p>
+            <p>🤖 I am Abdul Mannan's assistant. I can help you with the Physical AI Humanoid Robotics book.</p>
           </div>
         )}
 
