@@ -44,12 +44,24 @@ COPY scripts/ /app/scripts/
 # Create data directories
 RUN mkdir -p /app/data/qdrant /app/data/raw
 
-# Expose FastAPI port
-EXPOSE 8000
+# # Expose FastAPI port
+# EXPOSE 8000
 
-# Health check
+# # Health check
+# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+#     CMD curl --fail http://localhost:8000/api/v1/health || exit 1
+
+ # ... (rest of your file)
+
+# Expose port 7860 for Hugging Face Spaces
+EXPOSE 7860
+
+# Health check (Update port here too)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl --fail http://localhost:8000/api/v1/health || exit 1
+    CMD curl --fail http://localhost:7860/api/v1/health || exit 1
+
+# Run FastAPI application on port 7860
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]   
 
 # Run FastAPI application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
