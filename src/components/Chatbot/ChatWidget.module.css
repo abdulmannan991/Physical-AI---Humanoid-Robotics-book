@@ -170,7 +170,196 @@
 }
 
 /* ========================================
-   Messages Container
+   ChatKit Wrapper - Custom Styling
+   ======================================== */
+
+.chatKitWrapper {
+  flex: 1;
+  overflow: hidden;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Fix: Ensure proper flex sizing */
+}
+
+/* Override ChatKit default styles to match our purple gradient theme */
+.chatKitWrapper :global(.cs-main-container) {
+  height: 100%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Fix: Prevent content overflow */
+}
+
+.chatKitWrapper :global(.cs-chat-container) {
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0; /* Fix: Ensure input area is visible */
+}
+
+.chatKitWrapper :global(.cs-message-list) {
+  background: #f8f9fa;
+  padding: 20px;
+  padding-bottom: 10px; /* Fix: Reduce bottom padding to prevent input cutoff */
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0; /* Fix: Allow proper scrolling */
+}
+
+/* User messages - purple gradient */
+.chatKitWrapper :global(.cs-message--outgoing) :global(.cs-message__content) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  border-bottom-right-radius: 4px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+/* Assistant messages - white background */
+.chatKitWrapper :global(.cs-message--incoming) :global(.cs-message__content) {
+  background: white;
+  color: #333;
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  padding: 12px 16px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Message input styling - DARK MODE SINGLE BAR */
+.chatKitWrapper :global(.cs-message-input) {
+  border-top: none !important; /* CRITICAL: Remove top border */
+  border: none !important; /* CRITICAL: Remove all borders */
+  background: #1f2937 !important; /* CRITICAL: Dark gray background (gray-800) */
+  padding: 16px 20px 24px 20px; /* Fix: Extra bottom padding to prevent edge cutoff */
+  flex-shrink: 0; /* Fix: Prevent input from being compressed */
+  min-height: 84px; /* Fix: Increased height for better visibility */
+  box-shadow: none !important; /* CRITICAL: Remove any shadows */
+}
+
+.chatKitWrapper :global(.cs-message-input__content-editor),
+.chatKitWrapper :global(.cs-message-input__content-editor-wrapper),
+.chatKitWrapper :global(.cs-message-input__content-editor-container) {
+  padding: 14px 16px;
+  border: none !important; /* CRITICAL: Remove all nested borders */
+  border-radius: 24px !important; /* CRITICAL: Rounded bar shape */
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #374151 !important; /* CRITICAL: Dark gray bar (gray-700) */
+  background: #374151 !important; /* CRITICAL: Dark gray bar (fallback) */
+  color: #ffffff !important; /* CRITICAL: PURE WHITE text for maximum visibility */
+  min-height: 48px; /* Fix: Ensure input box has proper height */
+  caret-color: #ffffff !important; /* CRITICAL: WHITE cursor visible on dark background */
+  box-shadow: none !important; /* CRITICAL: Remove any box shadows */
+  outline: none !important; /* CRITICAL: Remove outline */
+}
+
+/* CRITICAL: Placeholder text visibility - gray on dark */
+.chatKitWrapper :global(.cs-message-input__content-editor)::placeholder,
+.chatKitWrapper :global(.cs-message-input__content-editor:empty::before) {
+  color: #9ca3af !important; /* CRITICAL: Gray-400 for placeholder on dark background */
+  opacity: 1 !important;
+}
+
+.chatKitWrapper :global(.cs-message-input__content-editor):focus,
+.chatKitWrapper :global(.cs-message-input__content-editor):focus-visible {
+  border: none !important; /* CRITICAL: No border on focus */
+  outline: none !important; /* CRITICAL: No outline on focus */
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.5) !important; /* CRITICAL: Purple glow on focus instead of border */
+  background-color: #374151 !important; /* CRITICAL: Keep dark gray on focus */
+  background: #374151 !important; /* CRITICAL: Keep dark gray on focus */
+  color: #ffffff !important; /* CRITICAL: Keep WHITE text on focus */
+}
+
+/* CRITICAL: Override ALL possible theme overrides - DARK MODE with WHITE TEXT */
+.chatKitWrapper :global(.cs-message-input__content-editor[contenteditable="true"]),
+.chatKitWrapper :global(.cs-message-input__content-editor[contenteditable="true"]:focus),
+.chatKitWrapper :global(.cs-message-input__content-editor[data-placeholder]),
+.chatKitWrapper :global(.cs-message-input__content-editor[role="textbox"]) {
+  background-color: #374151 !important;
+  background: #374151 !important;
+  color: #ffffff !important; /* CRITICAL: PURE WHITE text */
+  -webkit-text-fill-color: #ffffff !important; /* CRITICAL: Safari/WebKit WHITE text color */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* CRITICAL: Additional text node targeting for typed content */
+.chatKitWrapper :global(.cs-message-input__content-editor) *,
+.chatKitWrapper :global(.cs-message-input__content-editor) span,
+.chatKitWrapper :global(.cs-message-input__content-editor) div,
+.chatKitWrapper :global(.cs-message-input__content-editor) p {
+  color: #ffffff !important; /* CRITICAL: WHITE text for all child elements */
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* CRITICAL: Remove wrapper borders and shadows */
+.chatKitWrapper :global(.cs-message-input__content-editor-wrapper),
+.chatKitWrapper :global(.cs-message-input__tools),
+.chatKitWrapper :global(.cs-message-input__content-editor-container) {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.chatKitWrapper :global(.cs-button--send) {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%) !important; /* CRITICAL: Deep vivid purple (purple-700) */
+  background-color: #7c3aed !important; /* CRITICAL: Fallback solid purple-700 */
+  border: none;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0; /* Fix: Prevent button from shrinking */
+  opacity: 1 !important; /* CRITICAL: Force full opacity */
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3) !important; /* Fix: Add depth with purple shadow */
+}
+
+.chatKitWrapper :global(.cs-button--send):hover:not(:disabled) {
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%) !important; /* CRITICAL: Even deeper on hover (purple-800) */
+  background-color: #6d28d9 !important; /* CRITICAL: Fallback purple-800 */
+  opacity: 1 !important; /* CRITICAL: Maintain full opacity on hover */
+  transform: scale(1.05); /* Fix: Slight scale for interaction feedback */
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4) !important; /* Fix: Enhanced shadow on hover */
+}
+
+.chatKitWrapper :global(.cs-button--send):active:not(:disabled) {
+  transform: scale(0.98); /* Fix: Press effect */
+  box-shadow: 0 1px 4px rgba(124, 58, 237, 0.3) !important;
+}
+
+.chatKitWrapper :global(.cs-button--send):disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  background: #9ca3af !important; /* Fix: Gray when disabled */
+}
+
+/* CRITICAL: Ensure send button icon is always visible */
+.chatKitWrapper :global(.cs-button--send) svg,
+.chatKitWrapper :global(.cs-button--send) svg path,
+.chatKitWrapper :global(.cs-button--send) svg * {
+  fill: white !important;
+  color: white !important;
+  stroke: white !important;
+}
+
+/* Typing indicator */
+.chatKitWrapper :global(.cs-typing-indicator) {
+  background: white;
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.chatKitWrapper :global(.cs-typing-indicator__dot) {
+  background: #999;
+}
+
+/* ========================================
+   Messages Container (Deprecated - now using ChatKit)
    ======================================== */
 
 .messagesContainer {
@@ -303,16 +492,41 @@
 }
 
 .citationLink {
-  color: #667eea;
-  text-decoration: none;
-  transition: color 0.2s;
+  /* CRITICAL: Yellow chip/highlight styling like warning badges */
+  display: inline-block;
+  background-color: #fef3c7 !important; /* CRITICAL: Light yellow background (yellow-100) */
+  background: #fef3c7 !important;
+  color: #92400e !important; /* CRITICAL: Dark amber/brown text (amber-900) for contrast */
+  padding: 4px 12px !important; /* CRITICAL: Padding to create chip appearance */
+  margin: 2px 4px 2px 0 !important; /* CRITICAL: Spacing between chips */
+  border-radius: 16px !important; /* CRITICAL: Fully rounded pill shape */
+  text-decoration: none !important; /* CRITICAL: No underline for clean chip look */
+  transition: all 0.2s ease;
   word-break: break-word;
   overflow-wrap: break-word;
+  font-weight: 600 !important; /* CRITICAL: Semibold for readability */
+  font-size: 13px !important;
+  cursor: pointer;
+  border: 1px solid #fde68a !important; /* CRITICAL: Subtle yellow border (yellow-200) */
 }
 
 .citationLink:hover {
-  color: #764ba2;
-  text-decoration: underline;
+  background-color: #fde68a !important; /* CRITICAL: Darker yellow on hover (yellow-200) */
+  background: #fde68a !important;
+  color: #78350f !important; /* CRITICAL: Even darker amber on hover (amber-900 dark) */
+  text-decoration: none !important; /* CRITICAL: Keep no underline */
+  transform: translateY(-1px); /* Fix: Slight lift on hover */
+  box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3) !important; /* Fix: Yellow shadow on hover */
+}
+
+.citationLink:visited {
+  background-color: #fef3c7 !important; /* Fix: Keep same yellow for visited */
+  color: #92400e !important; /* Fix: Keep same amber text */
+}
+
+.citationLink:active {
+  background-color: #fcd34d !important; /* Fix: Even darker yellow when clicking (yellow-300) */
+  transform: translateY(0); /* Fix: Remove lift when clicking */
 }
 
 .citationScore {

@@ -2,16 +2,19 @@
 # Install with: pip install -r requirements.txt
 
 # Core dependencies
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-pydantic==2.5.3
-pydantic-settings==2.1.0
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.3
+pydantic-settings>=2.1.0
 
 # Vector database
 qdrant-client==1.7.3
 
 # Cohere (LLM and Embeddings)
 cohere==4.44.0
+
+# Environment variables
+python-dotenv==1.0.0
 
 # Database (Neon PostgreSQL)
 asyncpg==0.29.0
