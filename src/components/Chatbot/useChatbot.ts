@@ -15,7 +15,7 @@ import type {
   UseChatbotReturn,
 } from './types';
 
-const API_BASE_URL = 'http://localhost:8001/api/v1';
+const API_BASE_URL = 'https://itsme00-physical-ai-book.hf.space/api/v1';
 const SESSION_STORAGE_KEY = 'chatbot_session';
 
 interface StoredSession {
