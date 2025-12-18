@@ -94,7 +94,7 @@
 }
 
 /* Mobile responsive - Small screens only */
-@media (max-width: 480px) {
+@media (max-width: 280px) {
   .chatWindow {
     bottom: 16px;
     right: auto;
