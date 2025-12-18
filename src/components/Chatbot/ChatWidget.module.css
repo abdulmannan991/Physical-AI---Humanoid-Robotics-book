@@ -80,16 +80,38 @@
   }
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
+/* Tablet responsive (768px and below, but not mobile) */
+@media (max-width: 468px) and (min-width: 481px) {
   .chatWindow {
     bottom: 88px;
-    right: 16px;
-    left: 16px;
+    right: 20px;
+    left: 20px;
     width: auto;
     max-width: none;
-    height: 90vh;
-    max-height: 90vh;
+    height: 85vh;
+    max-height: 85vh;
+  }
+}
+
+/* Mobile responsive - Small screens only */
+@media (max-width: 480px) {
+  .chatWindow {
+    bottom: 16px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    max-width: 92vw;
+    height: 72vh;
+    max-height: 72vh;
+    border-radius: 12px;
+  }
+
+  .fab {
+    bottom: 12px;
+    right: 12px;
+    width: 52px;
+    height: 52px;
   }
 }
 
@@ -138,6 +160,26 @@
 
 .closeButton:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile header adjustments */
+@media (max-width: 480px) {
+  .chatHeader {
+    padding: 12px 16px;
+  }
+
+  .chatTitle {
+    font-size: 16px;
+  }
+
+  .chatSubtitle {
+    font-size: 12px;
+  }
+
+  .closeButton {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 /* ========================================
@@ -202,10 +244,31 @@
 .chatKitWrapper :global(.cs-message-list) {
   background: #f8f9fa;
   padding: 20px;
-  padding-bottom: 10px; /* Fix: Reduce bottom padding to prevent input cutoff */
+  padding-bottom: 12px; /* Comfortable bottom spacing */
   flex: 1;
   overflow-y: auto;
-  min-height: 0; /* Fix: Allow proper scrolling */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  min-height: 0; /* Allow proper flex scrolling */
+  scroll-behavior: smooth; /* Smooth auto-scroll */
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+}
+
+/* Scrollbar styling for clean appearance */
+.chatKitWrapper :global(.cs-message-list)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatKitWrapper :global(.cs-message-list)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatKitWrapper :global(.cs-message-list)::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.chatKitWrapper :global(.cs-message-list)::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
 
 /* User messages - purple gradient */
@@ -216,6 +279,10 @@
   border-bottom-right-radius: 4px;
   padding: 12px 16px;
   font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 /* Assistant messages - white background */
@@ -226,77 +293,81 @@
   border-bottom-left-radius: 4px;
   padding: 12px 16px;
   font-size: 14px;
+  line-height: 1.5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
-/* Message input styling - DARK MODE SINGLE BAR */
+/* Message input styling - CLEAN WHITE INTERFACE */
 .chatKitWrapper :global(.cs-message-input) {
-  border-top: none !important; /* CRITICAL: Remove top border */
-  border: none !important; /* CRITICAL: Remove all borders */
-  background: #1f2937 !important; /* CRITICAL: Dark gray background (gray-800) */
-  padding: 16px 20px 24px 20px; /* Fix: Extra bottom padding to prevent edge cutoff */
-  flex-shrink: 0; /* Fix: Prevent input from being compressed */
-  min-height: 84px; /* Fix: Increased height for better visibility */
-  box-shadow: none !important; /* CRITICAL: Remove any shadows */
+  border-top: 1px solid #e5e7eb !important; /* Clean separator line */
+  border: none !important;
+  background: #ffffff !important; /* Pure white background */
+  padding: 16px 20px 20px 20px; /* Comfortable padding */
+  flex-shrink: 0; /* Prevent input compression */
+  min-height: 76px; /* Sufficient height */
+  box-shadow: none !important;
 }
 
 .chatKitWrapper :global(.cs-message-input__content-editor),
 .chatKitWrapper :global(.cs-message-input__content-editor-wrapper),
 .chatKitWrapper :global(.cs-message-input__content-editor-container) {
-  padding: 14px 16px;
-  border: none !important; /* CRITICAL: Remove all nested borders */
-  border-radius: 24px !important; /* CRITICAL: Rounded bar shape */
+  padding: 12px 16px;
+  border: 1px solid #d1d5db !important; /* Subtle gray border */
+  border-radius: 12px !important; /* Smooth rounded corners */
   font-size: 14px;
   font-family: inherit;
-  background-color: #374151 !important; /* CRITICAL: Dark gray bar (gray-700) */
-  background: #374151 !important; /* CRITICAL: Dark gray bar (fallback) */
-  color: #ffffff !important; /* CRITICAL: PURE WHITE text for maximum visibility */
-  min-height: 48px; /* Fix: Ensure input box has proper height */
-  caret-color: #ffffff !important; /* CRITICAL: WHITE cursor visible on dark background */
-  box-shadow: none !important; /* CRITICAL: Remove any box shadows */
-  outline: none !important; /* CRITICAL: Remove outline */
+  background-color: #f9fafb !important; /* Very light gray background */
+  background: #f9fafb !important;
+  color: #1f2937 !important; /* Dark text for readability */
+  min-height: 44px; /* Comfortable input height */
+  caret-color: #667eea !important; /* Purple cursor to match theme */
+  box-shadow: none !important;
+  outline: none !important;
+  transition: all 0.2s ease;
 }
 
-/* CRITICAL: Placeholder text visibility - gray on dark */
+/* Placeholder text styling */
 .chatKitWrapper :global(.cs-message-input__content-editor)::placeholder,
 .chatKitWrapper :global(.cs-message-input__content-editor:empty::before) {
-  color: #9ca3af !important; /* CRITICAL: Gray-400 for placeholder on dark background */
+  color: #9ca3af !important; /* Medium gray placeholder */
   opacity: 1 !important;
 }
 
 .chatKitWrapper :global(.cs-message-input__content-editor):focus,
 .chatKitWrapper :global(.cs-message-input__content-editor):focus-visible {
-  border: none !important; /* CRITICAL: No border on focus */
-  outline: none !important; /* CRITICAL: No outline on focus */
-  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.5) !important; /* CRITICAL: Purple glow on focus instead of border */
-  background-color: #374151 !important; /* CRITICAL: Keep dark gray on focus */
-  background: #374151 !important; /* CRITICAL: Keep dark gray on focus */
-  color: #ffffff !important; /* CRITICAL: Keep WHITE text on focus */
+  border: 1px solid #667eea !important; /* Purple border on focus */
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important; /* Subtle purple glow */
+  background-color: #ffffff !important; /* White background on focus */
+  background: #ffffff !important;
+  color: #1f2937 !important; /* Keep dark text */
 }
 
-/* CRITICAL: Override ALL possible theme overrides - DARK MODE with WHITE TEXT */
+/* Override all theme states - CLEAN WHITE MODE */
 .chatKitWrapper :global(.cs-message-input__content-editor[contenteditable="true"]),
 .chatKitWrapper :global(.cs-message-input__content-editor[contenteditable="true"]:focus),
 .chatKitWrapper :global(.cs-message-input__content-editor[data-placeholder]),
 .chatKitWrapper :global(.cs-message-input__content-editor[role="textbox"]) {
-  background-color: #374151 !important;
-  background: #374151 !important;
-  color: #ffffff !important; /* CRITICAL: PURE WHITE text */
-  -webkit-text-fill-color: #ffffff !important; /* CRITICAL: Safari/WebKit WHITE text color */
-  border: none !important;
-  box-shadow: none !important;
+  background-color: #f9fafb !important;
+  background: #f9fafb !important;
+  color: #1f2937 !important; /* Dark text on light background */
+  -webkit-text-fill-color: #1f2937 !important; /* Safari/WebKit compatibility */
+  border: 1px solid #d1d5db !important;
 }
 
-/* CRITICAL: Additional text node targeting for typed content */
+/* Text node targeting for typed content */
 .chatKitWrapper :global(.cs-message-input__content-editor) *,
 .chatKitWrapper :global(.cs-message-input__content-editor) span,
 .chatKitWrapper :global(.cs-message-input__content-editor) div,
 .chatKitWrapper :global(.cs-message-input__content-editor) p {
-  color: #ffffff !important; /* CRITICAL: WHITE text for all child elements */
-  -webkit-text-fill-color: #ffffff !important;
+  color: #1f2937 !important; /* Dark text for all child elements */
+  -webkit-text-fill-color: #1f2937 !important;
 }
 
-/* CRITICAL: Remove wrapper borders and shadows */
+/* Clean wrapper styling */
 .chatKitWrapper :global(.cs-message-input__content-editor-wrapper),
 .chatKitWrapper :global(.cs-message-input__tools),
 .chatKitWrapper :global(.cs-message-input__content-editor-container) {
@@ -343,6 +414,25 @@
   fill: white !important;
   color: white !important;
   stroke: white !important;
+}
+
+/* Mobile input area adjustments */
+@media (max-width: 480px) {
+  .chatKitWrapper :global(.cs-message-input) {
+    padding: 12px 16px 16px 16px !important;
+    min-height: 68px !important;
+  }
+
+  .chatKitWrapper :global(.cs-message-input__content-editor) {
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    min-height: 40px !important;
+  }
+
+  .chatKitWrapper :global(.cs-button--send) {
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
 
 /* Typing indicator */

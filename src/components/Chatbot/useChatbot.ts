@@ -16,6 +16,7 @@ import type {
 } from './types';
 
 const API_BASE_URL = 'https://itsme00-physical-ai-book.hf.space/api/v1';
+// 'https://itsme00-physical-ai-book.hf.space/api/v1';
 const SESSION_STORAGE_KEY = 'chatbot_session';
 
 interface StoredSession {
