@@ -310,25 +310,47 @@
   min-height: 76px; /* Sufficient height */
   box-shadow: none !important;
 }
-
 .chatKitWrapper :global(.cs-message-input__content-editor),
 .chatKitWrapper :global(.cs-message-input__content-editor-wrapper),
 .chatKitWrapper :global(.cs-message-input__content-editor-container) {
-  padding: 12px 16px;
-  border: 1px solid #d1d5db !important; /* Subtle gray border */
-  border-radius: 12px !important; /* Smooth rounded corners */
+  /* ... keep your existing basic styles ... */
+  border: 1px solid #d1d5db !important;
+  border-radius: 12px !important;
+  background-color: #f9fafb !important;
+  color: #1f2937 !important;
   font-size: 14px;
-  font-family: inherit;
-  background-color: #f9fafb !important; /* Very light gray background */
-  background: #f9fafb !important;
-  color: #1f2937 !important; /* Dark text for readability */
-  min-height: 44px; /* Comfortable input height */
-  caret-color: #667eea !important; /* Purple cursor to match theme */
-  box-shadow: none !important;
-  outline: none !important;
-  transition: all 0.2s ease;
+  
+  /* --- LAYOUT FIXES --- */
+  min-height: 44px;            /* Start small (1 line) */
+  max-height: 84px;            /* Allow growth up to ~3 lines */
+  padding: 10px 14px;          /* Adjusted padding for vertical centering */
+  line-height: 1.5;            /* Clean line spacing */
+  
+  /* --- WRAPPING FIXES --- */
+  overflow-y: auto;            /* Scroll only when taller than 84px */
+  word-break: break-word;      /* Break long continuous words */
+  overflow-wrap: break-word;   /* Standard wrapping */
+  white-space: pre-wrap;       /* Respect user's line breaks */
+
+  /* --- HIDE DEFAULT SCROLLBAR (Firefox) --- */
+  scrollbar-width: thin;       
+  scrollbar-color: #cbd5e1 transparent; /* Grey thumb, transparent track */
 }
 
+/* --- WEBKIT SCROLLBAR STYLING (Chrome, Safari, Edge) --- */
+/* This removes the ugly default arrows and makes the bar thin */
+.chatKitWrapper :global(.cs-message-input__content-editor)::-webkit-scrollbar {
+  width: 6px;                  /* Very thin width */
+}
+
+.chatKitWrapper :global(.cs-message-input__content-editor)::-webkit-scrollbar-track {
+  background: transparent;     /* Invisible track */
+}
+
+.chatKitWrapper :global(.cs-message-input__content-editor)::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;   /* Soft grey color */
+  border-radius: 10px;         /* Round edges */
+}
 /* Placeholder text styling */
 .chatKitWrapper :global(.cs-message-input__content-editor)::placeholder,
 .chatKitWrapper :global(.cs-message-input__content-editor:empty::before) {
