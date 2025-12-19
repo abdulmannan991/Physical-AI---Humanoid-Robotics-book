@@ -304,7 +304,7 @@
 .chatKitWrapper :global(.cs-message-input) {
   border-top: 1px solid #e5e7eb !important; /* Clean separator line */
   border: none !important;
-  background: #ffffff !important; /* Pure white background */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; /* Pure white background */
   padding: 16px 20px 20px 20px; /* Comfortable padding */
   flex-shrink: 0; /* Prevent input compression */
   min-height: 76px; /* Sufficient height */
