@@ -84,7 +84,7 @@ const config: Config = {
           label: 'Chapters',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/abdulmannan991',
           label: 'GitHub',
           position: 'right',
         },
