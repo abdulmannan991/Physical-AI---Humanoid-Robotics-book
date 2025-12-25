@@ -1,0 +1,226 @@
+/**
+ * Profile View Styles
+ *
+ * Responsive design for mobile/tablet/desktop (FR-023)
+ */
+
+.profileContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.profileHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profileHeader h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: var(--ifm-color-content);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.imageSection,
+.infoSection,
+.historySection {
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.imageSection h2,
+.infoSection h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  color: var(--ifm-color-content);
+}
+
+.historySection {
+  grid-column: 1 / -1;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.infoField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoField label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fieldValue {
+  padding: 0.75rem 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--ifm-color-content);
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.fieldValue code {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary);
+}
+
+/* Loading state */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--ifm-color-emphasis-300);
+  border-top: 4px solid var(--ifm-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingState p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Error state */
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+  text-align: center;
+}
+
+.errorState svg {
+  color: #ef4444;
+}
+
+.errorState p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ifm-color-content);
+}
+
+.retryButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .imageSection,
+[data-theme='dark'] .infoSection,
+[data-theme='dark'] .historySection {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .fieldValue {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) {
+  .profileContainer {
+    padding: 3rem 2rem;
+  }
+
+  .profileHeader h1 {
+    font-size: 2.5rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .profileContainer {
+    padding: 4rem 2rem;
+  }
+
+  .profileHeader {
+    text-align: left;
+  }
+
+  .profileContent {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+  }
+
+  .imageSection {
+    grid-column: 1;
+  }
+
+  .infoSection {
+    grid-column: 2;
+  }
+
+  .historySection {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}

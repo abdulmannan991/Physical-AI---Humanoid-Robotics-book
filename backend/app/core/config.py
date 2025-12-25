@@ -62,9 +62,18 @@ class Settings(BaseSettings):
     DB_POOL_MIN_SIZE: int = Field(default=2)
     DB_POOL_MAX_SIZE: int = Field(default=10)
 
+    # JWT Authentication
+    JWT_SECRET_KEY: str = Field(
+        ...,
+        description="Secret key for JWT token signing (required, 256-bit minimum)"
+    )
+    JWT_ALGORITHM: str = Field(default="HS256")
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=1440)  # 1 day
+    JWT_REFRESH_TOKEN_EXPIRE_MINUTES: int = Field(default=10080)  # 7 days
+
     # RAG Configuration
     RETRIEVAL_TOP_K: int = Field(default=5, ge=1, le=10)
-    CONFIDENCE_THRESHOLD: float = Field(default=0.35, ge=0.0, le=1.0)
+    CONFIDENCE_THRESHOLD: float = Field(default=0.2, ge=0.0, le=1.0)
     MAX_CHUNK_SIZE: int = Field(default=512)
     CHUNK_OVERLAP: int = Field(default=50)
     ENABLE_RERANKING: bool = Field(default=False)

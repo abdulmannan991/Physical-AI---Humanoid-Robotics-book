@@ -133,7 +133,18 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             >
               {messages.map((message) => {
                 const isUser = message.role === 'user';
-                const isLowConfidence = message.confidence !== undefined && message.confidence < 0.6;
+                // More lenient confidence threshold: only show warning for very low confidence (< 0.3)
+                // or when confidence is exactly 0.0 (complete failure)
+                const isLowConfidence = message.confidence !== undefined && message.confidence === 0.0;
+
+                // Detect clarification (T050 - FR-038)
+                const isAmbiguous = message.confidence === 0.5;
+                const hasClarificationOptions = !isUser && isAmbiguous && /\d+\.\s/.test(message.content);
+
+                // Parse clarification options
+                const clarificationOptions = hasClarificationOptions
+                  ? (message.content.match(/\d+\.\s+([^\n]+)/g) || []).map(item => item.trim())
+                  : [];
 
                 return (
                   <ChatKitMessage
@@ -172,8 +183,25 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                       </ChatKitMessage.Footer>
                     )}
 
+                    {/* Clarification options (T050 - FR-038) */}
+                    {hasClarificationOptions && clarificationOptions.length > 0 && (
+                      <ChatKitMessage.Footer>
+                        <div className={styles.clarificationOptions}>
+                          {clarificationOptions.map((option, index) => (
+                            <button
+                              key={index}
+                              className={styles.clarificationButton}
+                              onClick={() => handleSend(option)}
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      </ChatKitMessage.Footer>
+                    )}
+
                     {/* Low confidence badge */}
-                    {!isUser && isLowConfidence && (
+                    {!isUser && isLowConfidence && !isAmbiguous && (
                       <ChatKitMessage.Footer>
                         <div className={styles.lowConfidenceBadge}>
                           <svg

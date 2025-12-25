@@ -2,9 +2,10 @@
  * Chat Message Component
  *
  * Displays individual messages with citations as clickable links.
+ * Supports clarification options for ambiguous queries (T050).
  *
  * Constitution: backend/.specify/memory/constitution.md (Section 2 - Frontend isolation)
- * Requirements: FR-004, FR-009 (Message bubbles, citations as links)
+ * Requirements: FR-004, FR-009 (Message bubbles, citations as links), FR-038 (Clarification options)
  */
 
 import React from 'react';
@@ -13,11 +14,25 @@ import styles from './ChatWidget.module.css';
 
 interface ChatMessageProps {
   message: Message;
+  onClarificationClick?: (option: string) => void;
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
+export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onClarificationClick }) => {
   const isUser = message.role === 'user';
   const isLowConfidence = message.confidence !== undefined && message.confidence < 0.6;
+
+  // Detect if message contains clarification (confidence = 0.5, contains numbered list)
+  const isAmbiguous = message.confidence === 0.5;
+  const hasClarificationOptions = !isUser && isAmbiguous && /\d+\.\s/.test(message.content);
+
+  // Parse clarification options from message content (T050)
+  const clarificationOptions = React.useMemo(() => {
+    if (!hasClarificationOptions) return [];
+
+    // Extract numbered list items: "1. Option one", "2. Option two", etc.
+    const matches = message.content.match(/\d+\.\s+([^\n]+)/g);
+    return matches ? matches.map(item => item.trim()) : [];
+  }, [hasClarificationOptions, message.content]);
 
   return (
     <div className={`${styles.message} ${isUser ? styles.userMessage : styles.botMessage}`}>
@@ -48,8 +63,23 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           </div>
         )}
 
+        {/* Clarification options buttons (T050 - FR-038) */}
+        {hasClarificationOptions && clarificationOptions.length > 0 && onClarificationClick && (
+          <div className={styles.clarificationOptions}>
+            {clarificationOptions.map((option, index) => (
+              <button
+                key={index}
+                className={styles.clarificationButton}
+                onClick={() => onClarificationClick(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+
         {/* Low confidence indicator (User Story 3) */}
-        {!isUser && isLowConfidence && (
+        {!isUser && isLowConfidence && !isAmbiguous && (
           <div className={styles.lowConfidenceBadge}>
             <svg
               width="16"

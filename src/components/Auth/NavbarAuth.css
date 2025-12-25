@@ -1,0 +1,125 @@
+/**
+ * Navbar Authentication Styling
+ *
+ * Styles for Signup/Logout button in Docusaurus navbar.
+ */
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 12px;
+}
+
+.navbar-auth-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-auth-avatar,
+.navbar-auth-avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-auth-avatar {
+  object-fit: cover;
+  border: 2px solid var(--ifm-color-primary);
+}
+
+.navbar-auth-avatar:hover,
+.navbar-auth-avatar-placeholder:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.navbar-auth-avatar-placeholder {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid var(--ifm-color-primary);
+}
+
+.navbar-auth-username {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ifm-navbar-link-color);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-auth-username:hover {
+  color: var(--ifm-color-primary);
+}
+
+.navbar-auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-auth-button {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.navbar-auth-login {
+  background: transparent;
+  color: var(--ifm-navbar-link-color);
+  border: 1px solid var(--ifm-color-primary);
+}
+
+.navbar-auth-login:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+.navbar-auth-signup {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.navbar-auth-signup:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.navbar-auth-logout {
+  background: transparent;
+  color: var(--ifm-navbar-link-color);
+  border: 1px solid var(--ifm-navbar-link-color);
+}
+
+.navbar-auth-logout:hover {
+  background: var(--ifm-color-primary);
+  color: white;
+  border-color: var(--ifm-color-primary);
+}
+
+/* Mobile styles */
+@media (max-width: 996px) {
+  .navbar-auth {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .navbar-auth-button {
+    width: 100%;
+    padding: 10px 16px;
+  }
+}

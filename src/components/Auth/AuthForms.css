@@ -1,0 +1,190 @@
+/**
+ * Authentication Forms Styling
+ *
+ * Shared styles for LoginForm and SignupForm components.
+ * Follows Docusaurus theme and ensures responsive design.
+ *
+ * Constitution: .specify/memory/constitution.md (Section 2 - Preserve Docusaurus styling)
+ */
+
+.auth-form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--ifm-background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+  font-size: 1.8rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  font-size: 0.95rem;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-input {
+  flex: 1;
+  padding-right: 45px;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-emphasis-600);
+  transition: color 0.2s ease;
+}
+
+.password-toggle-button:hover {
+  color: var(--ifm-color-primary);
+}
+
+.password-toggle-button:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ifm-color-primary-rgb), 0.1);
+}
+
+.form-input:disabled {
+  background: var(--ifm-color-emphasis-100);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-hint {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.85rem;
+  margin-top: -0.25rem;
+}
+
+.form-checkbox-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.form-checkbox {
+  width: auto;
+  margin: 0;
+}
+
+.form-checkbox-label {
+  margin: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.auth-error {
+  padding: 0.75rem;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 4px;
+  color: var(--ifm-color-danger);
+  font-size: 0.9rem;
+}
+
+.auth-submit-button {
+  padding: 0.75rem 1.5rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 0.5rem;
+}
+
+.auth-submit-button:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.auth-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-submit-button:disabled {
+  background: var(--ifm-color-emphasis-400);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.auth-alternate-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.auth-link {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-form-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .auth-form-title {
+    font-size: 1.5rem;
+  }
+}

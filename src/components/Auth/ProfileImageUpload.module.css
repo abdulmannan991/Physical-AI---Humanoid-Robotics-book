@@ -1,0 +1,187 @@
+/**
+ * Profile Image Upload Styles
+ *
+ * Responsive design for mobile/tablet/desktop (FR-023)
+ */
+
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.previewSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePreview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.placeholderAvatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-emphasis-600);
+  border: 3px solid var(--ifm-color-emphasis-300);
+}
+
+.controlsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.selectButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.selectButton:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.uploadButton,
+.cancelButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.uploadButton {
+  background: #10b981;
+  color: white;
+}
+
+.uploadButton:hover:not(:disabled) {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.uploadButton:disabled {
+  background: var(--ifm-color-emphasis-300);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cancelButton {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: var(--ifm-color-emphasis-300);
+}
+
+.hint {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  text-align: center;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  color: #b91c1c;
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.errorMessage svg {
+  flex-shrink: 0;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .uploadContainer {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .errorMessage {
+  background: #450a0a;
+  border-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .uploadContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+
+  .controlsSection {
+    max-width: 350px;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .uploadContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+  }
+
+  .profilePreview,
+  .placeholderAvatar {
+    width: 180px;
+    height: 180px;
+  }
+
+  .controlsSection {
+    max-width: 400px;
+  }
+}
