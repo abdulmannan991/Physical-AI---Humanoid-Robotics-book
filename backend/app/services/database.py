@@ -10,7 +10,7 @@ Constitution: backend/.specify/memory/constitution.md (Section 4.2)
 """
 
 import logging
-from typing import Optional
+from typing import Optional, List
 from uuid import UUID, uuid4
 from datetime import datetime
 from contextlib import asynccontextmanager
@@ -115,14 +115,17 @@ class DatabaseService:
                 await session.rollback()
                 raise
 
-    async def create_session(self) -> Optional[UUID]:
+    async def create_session(self, user_id: Optional[UUID] = None) -> Optional[UUID]:
         """
         Create a new chat session.
+
+        Args:
+            user_id: User ID to link session to (None for guest sessions)
 
         Returns:
             Session ID (UUID) if successful, None if database unavailable
 
-        Constitution Reference: FR-034 (Session creation)
+        Constitution Reference: FR-024, FR-025, FR-026, FR-034 (Session creation and linking)
         """
         if not self._is_available:
             logger.warning("Database unavailable - cannot create session")
@@ -134,13 +137,14 @@ class DatabaseService:
             async with self.get_session() as session:
                 new_session = ChatSession(
                     session_id=session_id,
+                    user_id=user_id,  # Link to user if authenticated, NULL for guests
                     started_at=datetime.utcnow(),
                     last_activity_at=datetime.utcnow(),
                     message_count=0
                 )
                 session.add(new_session)
 
-            logger.info(f"Created new chat session: {session_id}")
+            logger.info(f"Created new chat session: {session_id} (user_id={user_id})")
             return session_id
 
         except SQLAlchemyError as e:
@@ -206,6 +210,101 @@ class DatabaseService:
         except SQLAlchemyError as e:
             logger.error(f"Failed to update session activity: {e}")
             return False
+
+    async def get_user_sessions(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0
+    ) -> List[ChatSession]:
+        """
+        Get chat sessions for a user with pagination.
+
+        Sessions are ordered by last_activity_at DESC (most recent first).
+
+        Args:
+            user_id: User UUID
+            limit: Maximum number of sessions to return (default 50)
+            offset: Number of sessions to skip (default 0)
+
+        Returns:
+            List of ChatSession objects
+
+        Constitution Reference: FR-028, FR-029 (Chat history with pagination)
+        """
+        if not self._is_available:
+            logger.warning("Database unavailable - cannot retrieve sessions")
+            return []
+
+        try:
+            async with self.get_session() as session:
+                result = await session.execute(
+                    select(ChatSession)
+                    .where(ChatSession.user_id == user_id)
+                    .order_by(ChatSession.last_activity_at.desc())
+                    .limit(limit)
+                    .offset(offset)
+                )
+                sessions = result.scalars().all()
+
+                logger.info(f"Retrieved {len(sessions)} sessions for user {user_id}")
+                return list(sessions)
+
+        except SQLAlchemyError as e:
+            logger.error(f"Failed to retrieve user sessions: {e}")
+            return []
+
+    async def get_session_messages(
+        self,
+        session_id: UUID,
+        user_id: UUID
+    ) -> List[QueryLog]:
+        """
+        Get all messages (queries and responses) for a specific session.
+
+        Verifies session belongs to the user before returning messages.
+
+        Args:
+            session_id: Session UUID
+            user_id: User UUID (for authorization)
+
+        Returns:
+            List of QueryLog objects ordered by timestamp ASC (oldest first)
+
+        Constitution Reference: FR-028, FR-029 (View session details)
+        """
+        if not self._is_available:
+            logger.warning("Database unavailable - cannot retrieve session messages")
+            return []
+
+        try:
+            async with self.get_session() as session:
+                # First verify session belongs to user
+                session_result = await session.execute(
+                    select(ChatSession)
+                    .where(ChatSession.session_id == session_id)
+                    .where(ChatSession.user_id == user_id)
+                )
+                chat_session = session_result.scalar_one_or_none()
+
+                if not chat_session:
+                    logger.warning(f"Session {session_id} not found for user {user_id}")
+                    return []
+
+                # Retrieve all messages for the session
+                messages_result = await session.execute(
+                    select(QueryLog)
+                    .where(QueryLog.session_id == session_id)
+                    .order_by(QueryLog.created_at.asc())  # Oldest first
+                )
+                messages = messages_result.scalars().all()
+
+                logger.info(f"Retrieved {len(messages)} messages for session {session_id}")
+                return list(messages)
+
+        except SQLAlchemyError as e:
+            logger.error(f"Failed to retrieve session messages: {e}")
+            return []
 
     async def log_query(
         self,

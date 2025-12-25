@@ -50,6 +50,52 @@ class LLMService:
         # (to avoid costs on health checks)
         return True
 
+    def generate(
+        self,
+        prompt: str,
+        preamble: str,
+        max_tokens: int = 1000,
+        temperature: float = 0.3
+    ) -> Optional[str]:
+        """
+        Generate response using Cohere LLM with custom preamble.
+
+        This is a lower-level method for guardrails classification and clarification.
+
+        Args:
+            prompt: User message/query
+            preamble: System prompt/instructions
+            max_tokens: Maximum response length
+            temperature: Sampling temperature (0.0 to 1.0)
+
+        Returns:
+            Generated text response or None if failed
+        """
+        if not self._is_available or not self.client:
+            logger.error("Cohere LLM client not available")
+            return None
+
+        try:
+            response = self.client.chat(
+                model=self.model,
+                message=prompt,
+                preamble=preamble,
+                max_tokens=max_tokens,
+                temperature=temperature
+            )
+
+            answer = response.text
+            return answer
+
+        except cohere.CohereAPIError as e:
+            logger.error(f"Cohere API error: {e}")
+            self._is_available = False
+            return None
+        except Exception as e:
+            logger.error(f"Cohere generation failed: {e}")
+            self._is_available = False
+            return None
+
     def generate_response(
         self,
         prompt: str,
@@ -58,7 +104,7 @@ class LLMService:
         temperature: float = 0.3
     ) -> Optional[str]:
         """
-        Generate response using Cohere LLM with RAG context.
+        Generate response using Cohere LLM with RAG context (T045 - Updated preamble).
 
         Args:
             prompt: User query/question
@@ -70,25 +116,29 @@ class LLMService:
             Generated text response or None if failed
 
         Constitution Reference: Section 4.1 (RAG generation)
+        Research Reference: research.md Section 6 (Guardrails - NEW preamble)
         """
         if not self._is_available or not self.client:
             logger.error("Cohere LLM client not available")
             return None
 
         try:
-            preamble = (
-                "You are a helpful assistant for the Physical AI & Humanoid Robotics course. "
-                "Answer questions based ONLY on the provided context. "
-                "If the context doesn't contain enough information, say so honestly. "
-                "Cite specific sections when possible."
-            )
+            # NEW preamble (relaxed guardrails, conversational)
+            preamble = """You are a friendly assistant for the "Physical AI & Humanoid Robotics" course by Abdul Mannan.
 
-            user_message = f"""Context from course content:
+Guidelines:
+- Respond warmly to greetings and introduce yourself
+- Answer questions using the provided course context
+- If context doesn't fully answer the question, say what you know and what's unclear
+- Stay focused on course content, but be conversational
+- If asked about other resources, politely redirect to this course"""
+
+            user_message = f"""Context from course materials:
 {context}
 
-Question: {prompt}
+User question: {prompt}
 
-Answer the question based on the context above. Be concise and accurate."""
+Provide a helpful, accurate answer based on the course context above."""
 
             response = self.client.chat(
                 model=self.model,

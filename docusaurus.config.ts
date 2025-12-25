@@ -39,6 +39,11 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Custom fields for environment variables (accessible via useDocusaurusContext)
+  customFields: {
+    API_URL: process.env.REACT_APP_API_URL || process.env.API_URL || 'http://localhost:8000',
+  },
+
   presets: [
     [
       'classic',
@@ -75,7 +80,7 @@ const config: Config = {
       title: 'Physical AI & Humanoid Robotics Course',
       logo: {
         alt: 'Physical AI & Humanoid Robotics Course Logo',
-        src: 'img/logo.svg',
+        src: 'img/robot-icon.svg',
       },
       items: [
         {
@@ -83,11 +88,7 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           label: 'Chapters',
         },
-        {
-          href: 'https://github.com/abdulmannan991',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // Signup/Logout button added via NavbarAuth component
       ],
     },
     footer: {

@@ -808,3 +808,49 @@
 .textSelectionButton:active {
   transform: translateY(0);
 }
+
+/* ========================================
+   Clarification Options (T051 - FR-038)
+   ======================================== */
+
+.clarificationOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.clarificationButton {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.clarificationButton:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.clarificationButton:active {
+  transform: translateX(2px);
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
+}
+
+@media (max-width: 480px) {
+  .clarificationButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
