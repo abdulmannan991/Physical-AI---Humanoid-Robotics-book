@@ -47,7 +47,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Get API URL from Docusaurus config (fixes "process is not defined" error)
   const { siteConfig } = useDocusaurusContext();
-const API_BASE_URL = 'http://localhost:8001';
+const API_BASE_URL = 'https://itsme00-physical-ai-book.hf.space';
 
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
