@@ -1,6 +1,6 @@
 /**
  * Custom CSS for Docusaurus
- * FIXED: Restored Sidebar Content & Text Wrapping
+ * FIXED: Sidebar Content + "Physical AI" Short Title on Mobile
  */
 
 /* Import global styles */
@@ -38,11 +38,32 @@
 /* ==============================================
    2. NAVBAR FIXES (Mobile)
    ============================================= */
-/* Hide long logo text on mobile so buttons fit */
+
+/* Replace long title with short "Physical AI" on mobile */
 @media (max-width: 600px) {
   .navbar__title {
-    display: none !important;
+    display: block !important;  /* Make container visible */
+    font-size: 0 !important;    /* Hide the original long text */
+    width: auto !important;
   }
+
+  /* Insert the short text using CSS pseudo-element */
+  .navbar__title::after {
+    content: "Physical AI";     /* The new short title */
+    font-size: 17px !important; /* Visible font size */
+    font-weight: 700;           /* Bold */
+    color: var(--ifm-navbar-link-color);
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-top: -2px;           /* Tiny alignment tweak */
+  }
+
+  /* Adjust spacing around the logo/brand */
+  .navbar__brand {
+    margin-right: 6px !important;
+  }
+  
   .navbar__logo {
     margin-right: 0 !important;
   }
@@ -91,6 +112,7 @@
   .navbar-sidebar__back {
     font-size: 0 !important; /* Hide old text */
     padding: 15px !important;
+    margin-left: 450px !important; /* Push to right edge */
     border-bottom: 1px solid var(--ifm-color-emphasis-200);
   }
 
@@ -100,5 +122,6 @@
     font-weight: bold;
     color: var(--ifm-navbar-link-color);
     display: block;
+ 
   }
 }
