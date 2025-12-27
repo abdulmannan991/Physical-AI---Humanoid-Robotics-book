@@ -24,15 +24,25 @@
 .profilePreview {
   width: 150px;
   height: 150px;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--ifm-color-primary);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
 }
 
 .placeholderAvatar {
   width: 150px;
   height: 150px;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
   border-radius: 50%;
   background: var(--ifm-color-emphasis-100);
   display: flex;
@@ -40,6 +50,8 @@
   justify-content: center;
   color: var(--ifm-color-emphasis-600);
   border: 3px solid var(--ifm-color-emphasis-300);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
 }
 
 .controlsSection {
@@ -150,6 +162,36 @@
   background: #450a0a;
   border-color: #7f1d1d;
   color: #fca5a5;
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  .uploadContainer {
+    padding: 1rem;
+  }
+
+  .profilePreview,
+  .placeholderAvatar {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  .controlsSection {
+    max-width: 100%;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .uploadButton,
+  .cancelButton {
+    width: 100%;
+  }
 }
 
 /* Tablet (768px - 1023px) */

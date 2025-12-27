@@ -93,17 +93,16 @@
   }
 }
 
-/* Mobile responsive - Small screens only */
-@media (max-width: 280px) {
+/* Mobile responsive - All mobile screens */
+@media (max-width: 768px) {
   .chatWindow {
-    bottom: 16px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    max-width: 92vw;
-    height: 72vh;
-    max-height: 72vh;
+    bottom: 76px;
+    right: 8px;
+    left: 8px;
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+    height: 70vh;
+    max-height: 70vh;
     border-radius: 12px;
   }
 
@@ -112,6 +111,25 @@
     right: 12px;
     width: 52px;
     height: 52px;
+  }
+}
+
+/* Very small mobile screens */
+@media (max-width: 480px) {
+  .chatWindow {
+    bottom: 70px;
+    right: 4px;
+    left: 4px;
+    width: calc(100vw - 8px);
+    max-width: calc(100vw - 8px);
+    height: 65vh;
+    max-height: 65vh;
+    border-radius: 12px;
+  }
+
+  .fab {
+    bottom: 8px;
+    right: 8px;
   }
 }
 

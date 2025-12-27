@@ -1,63 +1,18 @@
 /**
  * Navbar Authentication Styling
- *
- * Styles for Signup/Logout button in Docusaurus navbar.
+ * Optimized for Responsive Mobile Layout
  */
 
+/* --- Base Styles (Desktop) --- */
+/* Navbar Authentication Styling - Final Mobile Fix */
+
+/* Desktop Base */
 .navbar-auth {
   display: flex;
   align-items: center;
   gap: 12px;
+  height: 100%;
   margin-left: 12px;
-}
-
-.navbar-auth-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.navbar-auth-avatar,
-.navbar-auth-avatar-placeholder {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.navbar-auth-avatar {
-  object-fit: cover;
-  border: 2px solid var(--ifm-color-primary);
-}
-
-.navbar-auth-avatar:hover,
-.navbar-auth-avatar-placeholder:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
-
-.navbar-auth-avatar-placeholder {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  border: 2px solid var(--ifm-color-primary);
-}
-
-.navbar-auth-username {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ifm-navbar-link-color);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.navbar-auth-username:hover {
-  color: var(--ifm-color-primary);
 }
 
 .navbar-auth-buttons {
@@ -66,13 +21,13 @@
   gap: 8px;
 }
 
+/* Button Styling */
 .navbar-auth-button {
   padding: 6px 16px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
   border: none;
   white-space: nowrap;
 }
@@ -83,43 +38,53 @@
   border: 1px solid var(--ifm-color-primary);
 }
 
-.navbar-auth-login:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-color: var(--ifm-color-primary-dark);
-}
-
 .navbar-auth-signup {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
-.navbar-auth-signup:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
-}
-
-.navbar-auth-logout {
-  background: transparent;
-  color: var(--ifm-navbar-link-color);
-  border: 1px solid var(--ifm-navbar-link-color);
-}
-
-.navbar-auth-logout:hover {
-  background: var(--ifm-color-primary);
-  color: white;
-  border-color: var(--ifm-color-primary);
-}
-
-/* Mobile styles */
+/* --- MOBILE SPECIFIC FIXES --- */
 @media (max-width: 996px) {
   .navbar-auth {
-    margin-left: 0;
-    margin-top: 8px;
+    /* Push everything to the far right */
+    margin-left: auto !important; 
+    margin-right: 0 !important;
+    
+    /* Remove any fixed widths or top margins that cause scrollbars */
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
   }
 
-  .navbar-auth-button {
-    width: 100%;
-    padding: 10px 16px;
+  .navbar-auth-buttons {
+    /* Ensure buttons stay in one line */
+    flex-wrap: nowrap !important;
+    gap: 8px;
+  }
+  
+  /* Hide the username text on mobile, show only avatar */
+  .navbar-auth-username {
+    display: none !important;
   }
 }
+
+/* Extra Small Screens (Phones < 450px) */
+@media (max-width: 450px) {
+  .navbar-auth-button {
+    font-size: 12px;
+    padding: 5px 10px;
+    /* Allow them to be small but visible */
+    min-width: auto !important; 
+  }
+  
+  /* Optional: Make Login button just text to save even more space */
+  .navbar-auth-login {
+    border: none !important;
+    padding: 5px 5px !important;
+    text-decoration: underline;
+  }
+} 
+  /* Keep "Sign Up" button visible but small */
+  .navbar-auth-signup {
+    padding: 4px 10px;
+  }
