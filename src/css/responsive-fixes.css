@@ -1,0 +1,360 @@
+/**
+ * Responsive Fixes for Mobile & Tablet
+ *
+ * CRITICAL: Eliminates horizontal scrolling and overflow issues
+ * across all viewports (mobile, tablet, desktop)
+ *
+ * DO NOT MODIFY: These fixes prevent horizontal scroll bugs
+ */
+
+/* ============================================
+   ROOT LEVEL OVERFLOW PREVENTION
+   ============================================ */
+
+*,
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #__docusaurus, .main-wrapper {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  /* Prevent horizontal scroll on body */
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Docusaurus main wrapper */
+#__docusaurus {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.main-wrapper {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   NAVBAR RESPONSIVE FIXES
+   ============================================ */
+
+/* Ensure navbar doesn't cause overflow */
+nav.navbar {
+  max-width: 100vw;
+}
+
+.navbar__inner {
+  max-width: 100vw;
+}
+
+.navbar__items {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mobile navbar fixes (< 996px in Docusaurus) */
+@media (max-width: 996px) {
+  .navbar {
+    padding: 0.5rem 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .navbar__inner {
+    flex-wrap: nowrap !important; /* CHANGED: Prevent wrapping to avoid vertical expansion */
+    gap: 0.5rem;
+    max-width: 100vw !important;
+  }
+
+  .navbar__items {
+    flex-wrap: nowrap !important; /* CHANGED: Keep items on one line */
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* ============================================
+   CONTENT CONTAINER FIXES
+   ============================================ */
+
+.container {
+  max-width: 100vw !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  overflow-x: hidden;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.col {
+  max-width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* ============================================
+   MOBILE & TABLET SPECIFIC FIXES
+   ============================================ */
+
+/* Mobile devices (< 768px) */
+@media (max-width: 768px) {
+  /* Reduce padding to prevent overflow */
+  .container, .main-wrapper, article {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  /* Fix for cards and sections */
+  .card,
+  section {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Ensure images don't overflow */
+ img, picture, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Fix for tables */
+ table, pre, code {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+  /* Code blocks responsive */
+
+
+/* Tablet devices (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 100vw !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* ============================================
+   PROFILE IMAGE RESPONSIVE FIXES (CRITICAL)
+   ============================================ */
+
+/* Ensure circular images maintain shape on all devices */
+.navbar-auth-avatar,
+.navbar-auth-avatar-placeholder,
+.profilePreview,
+.placeholderAvatar {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Mobile profile image size constraints */
+@media (max-width: 768px) {
+  .profilePreview,
+  .placeholderAvatar {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+
+  .navbar-auth-avatar,
+  .navbar-auth-avatar-placeholder {
+    width: 32px !important;
+    height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+  }
+}
+
+/* ============================================
+   CHAT WIDGET RESPONSIVE FIXES (CRITICAL)
+   ============================================ */
+
+/* Mobile chat widget constraints */
+@media (max-width: 768px) {
+  .fab {
+    right: 12px !important;
+    bottom: 12px !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .chatWindow {
+    right: 8px !important;
+    bottom: 76px !important;
+    width: calc(100vw - 16px) !important;
+    max-height: 70vh !important;
+  }
+}
+
+/* Very small mobile screens (< 480px) */
+@media (max-width: 480px) {
+  .chatWindow {
+    right: 4px !important;
+    bottom: 70px !important;
+    width: calc(100vw - 8px) !important;
+    max-width: calc(100vw - 8px) !important;
+    left: 4px !important;
+    height: 65vh !important;
+    max-height: 65vh !important;
+    border-radius: 12px !important;
+  }
+
+  .fab {
+    right: 8px !important;
+    bottom: 8px !important;
+  }
+}
+
+/* ============================================
+   FORM & INPUT RESPONSIVE FIXES
+   ============================================ */
+
+/* Auth forms mobile */
+@media (max-width: 768px) {
+  .auth-form-container {
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  .auth-form {
+    max-width: 100%;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Password toggle button alignment */
+  .password-input-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ============================================
+   SIDEBAR & MENU FIXES
+   ============================================ */
+
+/* Sidebar fixes now in custom.css for better organization */
+
+/* ============================================
+   FOOTER RESPONSIVE FIXES
+   ============================================ */
+
+footer {
+  max-width: 100vw !important;
+  overflow-x: hidden;
+}
+
+.footer__links {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+/* ============================================
+   UTILITY CLASSES FOR OVERFLOW PREVENTION
+   ============================================ */
+
+.no-overflow {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+.mobile-full-width {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ============================================
+   CRITICAL: PREVENT SPECIFIC ELEMENT OVERFLOW
+   ============================================ */
+
+/* Prevent long URLs or text from causing overflow */
+a,
+p,
+span,
+div {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Prevent pre/code blocks from causing overflow */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+code {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ============================================
+   DESKTOP SAFETY CHECK
+   ============================================ */
+
+/* Ensure desktop layout isn't broken by these fixes */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .navbar {
+    padding: 0 1rem !important;
+  }
+
+  .navbar-auth {
+    width: auto !important;
+    margin-left: 12px !important;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE FIXES
+   ============================================ */
+
+@media (max-width: 896px) and (orientation: landscape) {
+  .chatWindow {
+    height: 85vh !important;
+    max-height: 85vh !important;
+  }
+
+  .navbar {
+    padding: 0.25rem 1rem !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY: PREVENT ZOOMING ISSUES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Prevent viewport zooming on input focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+}
