@@ -41,9 +41,10 @@ const config: Config = {
 
   // Custom fields for environment variables (accessible via useDocusaurusContext)
   customFields: {
-    API_URL: process.env.REACT_APP_API_URL || process.env.API_URL || 'http://localhost:8000',
+    API_URL: process.env.REACT_APP_API_URL || process.env.API_URL || 'https://itsme00-physical-ai-humanoid-robotics-backend.hf.space',
   },
 
+  // https://itsme00-physical-ai-humanoid-robotics-backend.hf.space
   presets: [
     [
       'classic',
